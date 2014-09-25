@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>IDPs from Mali</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- loading font -->
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700' rel='stylesheet' type='text/css'>
+
+  <!-- Loading jquery -->
+  <script src='js/jquery.js'></script>
+
+  <!-- Loading Mapbox, used for the popup -->
+  <script src='js/mapbox.js'></script>
+  <link href='css/mapbox.css' rel='stylesheet' />
+
+  <!-- Load Leaflet -->
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <script src="js/leaflet.js"></script>
+
+  <!-- Loading c3 + d3 -->
+  <script src='js/d3.min.js'></script>
+  <script src='js/c3.js'></script>
+  <link href='css/c3.css' rel='stylesheet' />
+
+  <!-- Loading style sheets that match our current site -->
+  <link rel='stylesheet' id='bean-css'  href='css/framework.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='main-style-css'  href='css/style.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='mobile-css'  href='css/mobile.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='font-awesome-four-css'  href='css/font-awesome.min.css' type='text/css' media='all' />
+
+  <!-- Loading the specific visualizations for this page -->
+  <script src="col-map-idp.js"></script>
+  <script src="col-timeseries-1.js"></script>
+
+
+  <style>
+    body {
+      font-family: 'Source Sans Pro';
+      margin-top:20px;
+      width: 100%;
+    }
+    #map {
+      position:absolute;
+      top:480px;
+      height: 600px;
+      bottom:0px;
+      left: 0 ;
+      width:100%;
+    }
+  </style>
+</head>
+
+<body>
+<div class="row" style="padding-bottom: 40px;">
+  <h1><strong>Lorem ipsum dolor.</strong></h1>
+</div>
+<div class="row">
+  <div class='four columns' style="padding-left: 0px;">
+
+    <p>Lorem ipsum dolor.</p>
+
+    <a href="https://data.hdx.rwlabs.org/dataset/idps-data-by-region-in-mali" class="btn btn-default btn-lg">Download the data from HDX</a>
+  </div>
+
+  <!-- Loading time series -->
+  <div id="timeseries" class="eight columns"></div>
+</div>
+
+<!-- Adding map -->
+<div id='map' class='map-box'></div>
+
+<!-- Map specific style -->
+<style>
+.map-legend .swatch {
+  width:20px;
+  height:20px;
+  float:left;
+  margin-right:10px;
+  }
+.legend {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+.leaflet-popup-close-button {
+  display: none;
+  }
+.leaflet-popup-content-wrapper {
+  pointer-events: none;
+  }
+</style>
+
+<!-- Loading geoJSOn data -->
+
+<!-- Chart specific styles -->
+<style>
+#timeseries .c3-line {
+  stroke-width: 2px;
+}
+#timeseries .c3-line-Average {
+  stroke-width: 3px;
+}
+#timeseries .c3-legend-item {
+  font-size: 11px;
+}
+</style>
+
+<script>
+version = '0.1'
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+console.log('Visualizing HDX data.')
+console.log('Developed by @luiscape + @takavarasha')
+console.log('Version: v.' + version)
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+</script>
+
+</body>
+</html>

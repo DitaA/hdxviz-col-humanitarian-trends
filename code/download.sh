@@ -1,0 +1,3 @@
+wget -H -O ../data/140916-humanitarian-trends.csv http://data.hdx.rwlabs.org/storage/f/2014-09-16T16%3A25%3A27.619Z/140916-humanitarian-trends.csv
+wget -H -O ../data/geo/admin_2.geojson https://raw.githubusercontent.com/luiscape/colombia_mapper/master/boundaries/geojson/admin_2.geojson
+printf 'You need to get the admin_3 boundaries in geoJSON from here: http://ec2-54-86-59-119.compute-1.amazonaws.com/owncloud/public.php?service=files&t=d47e7b44039c405b4425a82578385fb1&download'
