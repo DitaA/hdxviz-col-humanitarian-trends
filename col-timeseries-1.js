@@ -4,6 +4,9 @@
 
 // Color Brewer Palette: #d53e4f, #f46d43, #fdae61, #fee08b, #ffffbf, #e6f598, #abdda4, #66c2a5, #3288bd
 var colorPalette = ['#B2B2B2', '#007CE0'];
+var timeSeriesChart = generateTimeseriesChart("#timeseries", "data/totalPerDate.csv");
+
+/*
 var timeseries = c3.generate({
   bindto: '#timeseries',
     data: {
@@ -46,3 +49,54 @@ var timeseries = c3.generate({
       show: false
     }
 });
+*/
+
+function generateTimeseriesChart(bindTo, dataUrl) {
+	return c3.generate({
+		bindto: bindTo,
+		data: {
+			url: dataUrl,
+			x: 'date',
+			type: 'line',
+			colors: {
+				total: colorPalette[1]
+			},
+			names: {
+				date: "Date",
+				total_idps: "Total Number of Internally Displaced Persons"
+			}			
+		},
+		axis: {
+			x: {
+				type: 'timeseries',
+				tick: {
+					format: '%b %Y',
+					culling: {
+						max:6
+					}
+				},
+				label: {
+					text: "Date",
+					position: "outer-center"
+				}
+			},
+			y: {
+				label: {
+					text: "Number of IDPs",
+					position: "outer-center"
+				},
+				tick: {
+					culling: {
+						max: 5
+					}
+				}
+			}
+		},
+		size: {
+			height: 300
+		},
+		padding: {
+			right: 20
+		}		
+	});
+};
