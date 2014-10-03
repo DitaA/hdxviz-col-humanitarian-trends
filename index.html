@@ -72,6 +72,20 @@
       font-size: 0px;
     }
 
+    /* timeseries specific style */
+    #timeseries {
+      padding-top: 30px;
+    }
+    #timeseries .c3-line {
+      stroke-width: 2px;
+    }
+    #timeseries .c3-line-Average {
+      stroke-width: 3px;
+    }
+    #timeseries .c3-legend-item {
+      font-size: 11px;
+    }
+
   </style>
 </head>
 
@@ -80,7 +94,7 @@
   <div class="row" style="padding-bottom: 40px;">
     <div class='five columns'></div>
     <div class='seven columns floaty'>
-      <h1><strong>Number of Internally Displaced Persons in Colombia</strong></h1>
+      <h1 style="padding-bottom: 20px;"><strong>Number of Internally Displaced Persons in Colombia</strong></h1>
       <p>Between November 2012 and December 2013, <strong>248,276 IDPs</strong> were officially registered by UARIV. This means that while negotiations continued with the FARC-EP in Havana, each month another 15,400 were displaced on average.</p>
 
       <a href="https://data.hdx.rwlabs.org/dataset/idps-data-by-region-in-mali" class="btn btn-default btn-lg" style="color:#ffffff;">Download the data from HDX</a>
@@ -91,19 +105,6 @@
   </div>
 </div>
 
-
-<!-- Chart specific styles -->
-<style>
-#timeseries .c3-line {
-  stroke-width: 2px;
-}
-#timeseries .c3-line-Average {
-  stroke-width: 3px;
-}
-#timeseries .c3-legend-item {
-  font-size: 11px;
-}
-</style>
 
 <!-- Loading the specific visualizations for this page -->
 <script src="viz/map.js"></script>
