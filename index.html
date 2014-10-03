@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset=utf-8 />
-  <title>IDPs from Mali</title>
+  <title>IDPs from Colombia</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
   <!-- loading font -->
@@ -13,11 +13,11 @@
 
   <!-- Load Leaflet -->
   <link rel="stylesheet" href="css/leaflet.css" />
-  <script src="js/leaflet.js"></script>
+  <!-- <script src="js/leaflet.js"></script> -->
 
   <!-- Loading Mapbox, used for the popup -->
   <script src='js/mapbox.js'></script>
-  <link href='css/mapbox.css' rel='stylesheet' />
+  <!-- <link href='css/mapbox.css' rel='stylesheet' /> -->
 
   <!-- Loading c3 + d3 -->
   <script src='js/d3.min.js'></script>
@@ -30,18 +30,22 @@
   <link rel='stylesheet' id='mobile-css'  href='css/mobile.css' type='text/css' media='all' />
   <link rel='stylesheet' id='font-awesome-four-css'  href='css/font-awesome.min.css' type='text/css' media='all' />
 
+
   <style>
     body {
       font-family: 'Source Sans Pro';
       margin-top:20px;
       width: 100%;
     }
+
+    /* Map specific styles */
     #map {
       position:absolute;
       height: 600px;
       width:100%;
     }
-    /* Compressed Overlay */
+
+    /* Overlay for the box */
     .overlay {
       z-index: 1;
       position: relative;
@@ -51,6 +55,12 @@
       border-radius: 5px;
       padding: 25px;
       box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+    }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background-color: #f2645a;
+      color: #fff;
+      box-shadow: none;
+      max-width: 200px;
     }
   </style>
 </head>
@@ -62,8 +72,6 @@
     <div class='seven columns floaty'>
       <h1><strong>Number of Internally Displaced Persons in Colombia</strong></h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis ligula sapien. Pellentesque tristique, mauris sit amet rhoncus blandit, nunc est mattis dolor, a sollicitudin ante ante a magna. Nulla tincidunt ornare orci vitae volutpat. Sed laoreet, libero vestibulum feugiat rhoncus, velit ligula semper orci, vitae tristique tortor arcu et neque. Quisque et rutrum velit. Vestibulum eget tempor nisi, at placerat libero. Pellentesque urna lorem, facilisis eget feugiat id, volutpat vitae velit.</p>
-
-      <p>In consequat felis vitae laoreet eleifend. Nulla ut venenatis risus, vitae condimentum ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut blandit ac orci ut feugiat. Integer vitae sapien vitae ligula scelerisque malesuada sit amet eget felis. Donec sit amet auctor nisi. Vivamus vel laoreet magna. Curabitur nec pellentesque leo. Phasellus auctor dictum urna semper mollis. Fusce congue placerat ipsum ac mattis. Curabitur ut enim dui. Ut vestibulum viverra dolor. Etiam vel rutrum metus, sit amet accumsan metus.</p>
 
       <a href="https://data.hdx.rwlabs.org/dataset/idps-data-by-region-in-mali" class="btn btn-default btn-lg" style="color:#ffffff;">Download the data from HDX</a>
 
