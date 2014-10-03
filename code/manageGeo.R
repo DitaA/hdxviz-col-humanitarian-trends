@@ -10,27 +10,27 @@
 library(rjson)
 
 # Loading the geographic data from a file.
-admin2 <- fromJSON(file = 'data/geo/admin_2.geojson')  # admin2 will be processed later
+# admin2 <- fromJSON(file = 'data/geo/admin_2.geojson')  # admin2 will be processed later
 admin3 <- fromJSON(file = 'data/geo/admin_3.geojson')
-data <- read.csv('data/idp_map_data.csv')
+geoData <- read.csv('data/idp_map_data.csv')
 
 # In GeoJSON files properties can be added
 # those properties will be the properties that
 # that contain that mapped data and alike.
-for (i in 1:length(admin2$features)) {
-  it = admin2$features[[i]]$properties$DEPARTAMEN  
-  if (i == 1) listFromCOD <- it
-  else listFromCOD <- c(listFromCOD, it)
-}
+# for (i in 1:length(admin2$features)) {
+#  it = admin2$features[[i]]$properties$DEPARTAMEN  
+#   if (i == 1) listFromCOD <- it
+#   else listFromCOD <- c(listFromCOD, it)
+# }
 
 # In admin2 both lists are the same. 
 # However, there is a difference in
 # encoding on the dataset file
-listFromCOD <- tolower(listFromCOD)
-listFromDataset <- unique(data$DEPTO_ORIGEN)
+# listFromCOD <- tolower(listFromCOD)
+# listFromDataset <- unique(data$DEPTO_ORIGEN)
 
 # Preparing the mapa that will be mapped.
-names(data) <- c('pcode', 'value')
+names(geoData) <- c('pcode', 'value')
 
 # Function to add properties to the GeoJSON based
 # on the existing p-code.
@@ -45,9 +45,9 @@ addDatatoGeoJson <- function(df = NULL) {
     setTxtProgressBar(pb, i)
     
     # adding the idps figure to the geojson
-    idp_data <- data[grep(admin3$features[[i]]$properties$CODANE, as.character(data$pcode)),2]
+    idp_data <- geoData[grep(admin3$features[[i]]$properties$CODANE, as.character(df$pcode)),2]
     idp_data = ifelse(length(idp_data) == 0, 0, as.numeric(idp_data))
-    admin3$features[[i]]$properties$IDPSJULY2014 <- idp_data
+    admin3$features[[i]]$properties$IDPDATA <- idp_data
   }
   
   # Returning data.frame
@@ -56,7 +56,7 @@ addDatatoGeoJson <- function(df = NULL) {
 }
 
 # making the join
-admin3 <- addDatatoGeoJson(data)
+admin3 <- addDatatoGeoJson(geoData)
 
 
 
@@ -68,3 +68,4 @@ sink()
 
 # Loading the post-processed data
 postData <- fromJSON(file = 'data/geo/idp_map_data.geojson')
+postData$features[[1]]$properties$IDPDATA

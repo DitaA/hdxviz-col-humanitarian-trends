@@ -105,6 +105,17 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 	        format: {
 	            title: d3.time.format('%B %Y')
 	            }
-	       }
+	       },
+	    regions: [
+	        {axis: 'x', start: '2012-11-01', end: '2013-12-31', class: 'negotiations'}
+	    ],
+	    grid: {
+	      y: {
+	        lines: [
+	          {value: 15400, text: 'Average from Nov. 2012 to Dec. 2013.', axis: 'y'},
+	          {value: 25643, text: 'All time average.', axis: 'y'}
+	          ]
+	         }
+        }
 	});
 };

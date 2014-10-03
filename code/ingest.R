@@ -11,7 +11,7 @@ data <- read.table('data/source/140812_UARIV_RNI_CONSULTA_EDADES.txt',
                    # fileEncoding = "UTF-8")  # error when trying encoding
 
 # working with a sample
-x <- head(data)
+# x <- head(data)
 
 # transforming dates
 data$FECHA <- paste0(data$FECHA, '01')  # adding 01 to make it easier for parsing
@@ -28,17 +28,21 @@ data$EDAD_HECHO <- gsub(",00", "", data$EDAD_HECHO)
 # preparing for graphics
 totalPerDate <- tapply(as.numeric(data$TOTAL), data$FECHA, sum)
 write.csv(totalPerDate, 'data/totalPerDate.csv', row.names = T)
+meanTotal <- mean(totalPerDate); meanTotal
 
-# selecting only data more recent than 2013-01-01
-latestData <- data[as.Date(data$FECHA) > as.Date('2013-01-01'),]
+# selecting only data between 2013-01-01 and 2013-12-31
+dataFrom2013 <- data[as.Date(data$FECHA) < as.Date('2013-12-31') & 
+                       as.Date(data$FECHA) > as.Date('2012-11-01'),]
 
+totalFrom2013 <- tapply(as.numeric(dataFrom2013$TOTAL), dataFrom2013$FECHA, sum)
+meanFrom2013 <- mean(totalFrom2013); meanFrom2013
 
 # perform sum of all of
 # the idps that come from the 
 # same location
-total2014perDept <- tapply(as.numeric(latestData$TOTAL), latestData$DEPTO_ORIGEN, sum)
-total2014perMun <- tapply(as.numeric(latestData$TOTAL), latestData$MPIO_ORIGEN, sum)
-total2014perPcode <- tapply(as.numeric(latestData$TOTAL), latestData$pcode_adm3_origen, sum)
+# total2014perDept <- tapply(as.numeric(dataFrom2013$TOTAL), dataFrom2013$DEPTO_ORIGEN, sum)
+# total2014perMun <- tapply(as.numeric(dataFrom2013$TOTAL), dataFrom2013$MPIO_ORIGEN, sum)
+total2014perPcode <- tapply(as.numeric(dataFrom2013$TOTAL), dataFrom2013$pcode_adm3_origen, sum)
 
 
 # writing output
