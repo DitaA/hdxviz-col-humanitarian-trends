@@ -57,37 +57,34 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 		data: {
 			url: dataUrl,
 			x: 'date',
-			type: 'line',
+			type: 'area-spline',
 			colors: {
 				total: colorPalette[1]
 			},
 			names: {
 				date: "Date",
-				total_idps: "Total Number of Internally Displaced Persons"
+				total_idps: "IDPs"
 			}
 		},
 		axis: {
 			x: {
+				show: true,
 				type: 'timeseries',
 				tick: {
 					format: '%b %Y',
-					culling: {
-						max:6
-					}
-				},
-				label: {
-					text: "Date",
-					position: "outer-center"
+					count: 10
 				}
 			},
 			y: {
+				show: false,
 				label: {
 					text: "Number of IDPs",
-					position: "outer-center"
+					position: "outer-center",
 				},
 				tick: {
+					format: d3.format(","),
 					culling: {
-						max: 5
+						max: 4
 					}
 				}
 			}
@@ -100,6 +97,14 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 		},
 		padding: {
 			right: 20
-		}		
+		},
+		point: {
+			show: false
+		},
+		tooltip: {
+	        format: {
+	            title: d3.time.format('%B %Y')
+	            }
+	       }
 	});
 };

@@ -54,14 +54,24 @@
       background-color: #fff;
       border-radius: 5px;
       padding: 25px;
-      box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+      /* box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3); */
     }
+    /* try to fix the distance between the cursor and */
+    /* the map. they are on top of each other now. */
     .leaflet-popup-content-wrapper, .leaflet-popup-tip {
       background-color: #f2645a;
       color: #fff;
       box-shadow: none;
       max-width: 200px;
+      /* margin-bottom: 20px; */
     }
+    /* very ugly hack to get rid of the attribution */
+    /* this is NOT a solution, it should be fixed */
+    /* as soon as possible */
+    #map > div.leaflet-control-container > div.leaflet-bottom.leaflet-right {
+      font-size: 0px;
+    }
+
   </style>
 </head>
 
@@ -71,7 +81,7 @@
     <div class='five columns'></div>
     <div class='seven columns floaty'>
       <h1><strong>Number of Internally Displaced Persons in Colombia</strong></h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis ligula sapien. Pellentesque tristique, mauris sit amet rhoncus blandit, nunc est mattis dolor, a sollicitudin ante ante a magna. Nulla tincidunt ornare orci vitae volutpat. Sed laoreet, libero vestibulum feugiat rhoncus, velit ligula semper orci, vitae tristique tortor arcu et neque. Quisque et rutrum velit. Vestibulum eget tempor nisi, at placerat libero. Pellentesque urna lorem, facilisis eget feugiat id, volutpat vitae velit.</p>
+      <p>Between November 2012 and December 2013, <strong>248,276 IDPs</strong> were officially registered by UARIV. This means that while negotiations continued with the FARC-EP in Havana, each month another 15,400 were displaced on average.</p>
 
       <a href="https://data.hdx.rwlabs.org/dataset/idps-data-by-region-in-mali" class="btn btn-default btn-lg" style="color:#ffffff;">Download the data from HDX</a>
 
