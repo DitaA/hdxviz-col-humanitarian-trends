@@ -11,13 +11,13 @@
   <!-- Loading jquery -->
   <script src='js/jquery.js'></script>
 
-  <!-- Loading Mapbox, used for the popup -->
-  <script src='js/mapbox.js'></script>
-  <link href='css/mapbox.css' rel='stylesheet' />
-
   <!-- Load Leaflet -->
   <link rel="stylesheet" href="css/leaflet.css" />
   <script src="js/leaflet.js"></script>
+
+  <!-- Loading Mapbox, used for the popup -->
+  <script src='js/mapbox.js'></script>
+  <link href='css/mapbox.css' rel='stylesheet' />
 
   <!-- Loading c3 + d3 -->
   <script src='js/d3.min.js'></script>
@@ -38,63 +38,43 @@
     }
     #map {
       position:absolute;
-      top:480px;
       height: 600px;
-      bottom:0px;
-      left: 0 ;
       width:100%;
+    }
+    /* Compressed Overlay */
+    .overlay {
+      z-index: 1;
+      position: relative;
+    }
+    .floaty {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 25px;
+      box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+    }
+    #map > div.overlay > div > div.eight.columns.floaty > a {
+      color: #fff;
     }
   </style>
 </head>
 
-<body>
-<div class="row" style="padding-bottom: 40px;">
-  <h1><strong>Lorem ipsum dolor.</strong></h1>
-</div>
-<div class="row">
-  <div class='four columns' style="padding-left: 0px;">
+<body id='map'>
+<div class="overlay">
+  <div class="row" style="padding-bottom: 40px;">
+    <div class='five columns'></div>
+    <div class='seven columns floaty'>
+      <h1><strong>Number of Internally Displaced Persons in Colombia</strong></h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis ligula sapien. Pellentesque tristique, mauris sit amet rhoncus blandit, nunc est mattis dolor, a sollicitudin ante ante a magna. Nulla tincidunt ornare orci vitae volutpat. Sed laoreet, libero vestibulum feugiat rhoncus, velit ligula semper orci, vitae tristique tortor arcu et neque. Quisque et rutrum velit. Vestibulum eget tempor nisi, at placerat libero. Pellentesque urna lorem, facilisis eget feugiat id, volutpat vitae velit.</p>
 
-    <p>Lorem ipsum dolor.</p>
+      <p>In consequat felis vitae laoreet eleifend. Nulla ut venenatis risus, vitae condimentum ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut blandit ac orci ut feugiat. Integer vitae sapien vitae ligula scelerisque malesuada sit amet eget felis. Donec sit amet auctor nisi. Vivamus vel laoreet magna. Curabitur nec pellentesque leo. Phasellus auctor dictum urna semper mollis. Fusce congue placerat ipsum ac mattis. Curabitur ut enim dui. Ut vestibulum viverra dolor. Etiam vel rutrum metus, sit amet accumsan metus.</p>
 
-    <a href="https://data.hdx.rwlabs.org/dataset/idps-data-by-region-in-mali" class="btn btn-default btn-lg">Download the data from HDX</a>
+      <a href="https://data.hdx.rwlabs.org/dataset/idps-data-by-region-in-mali" class="btn btn-default btn-lg">Download the data from HDX</a>
+
+      <!-- Loading time series -->
+      <div id="timeseries"></div>
+    </div>
   </div>
-
-  <!-- Loading time series -->
-  <div id="timeseries" class="eight columns"></div>
 </div>
-
-<!-- Adding map -->
-<div id='map' class='map-box'></div>
-
-<!-- Map specific style -->
-<style>
-.map-legend .swatch {
-  width:20px;
-  height:20px;
-  float:left;
-  margin-right:10px;
-  }
-.legend {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    line-height: 18px;
-    color: #555;
-}
-.legend i {
-    width: 18px;
-    height: 18px;
-    float: left;
-    margin-right: 8px;
-    opacity: 0.7;
-}
-.leaflet-popup-close-button {
-  display: none;
-  }
-.leaflet-popup-content-wrapper {
-  pointer-events: none;
-  }
-</style>
 
 
 <!-- Chart specific styles -->
@@ -111,14 +91,14 @@
 </style>
 
 <!-- Loading the specific visualizations for this page -->
-<script src="viz/col-map-idp.js"></script>
+<script src="viz/map.js"></script>
 <script src="viz/col-timeseries-1.js"></script>
 
 <script>
-version = '0.1'
+version = '0.2'
 console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-console.log('Visualizing HDX data.')
+console.log('hdxviz-col-humanitarian-trends.')
 console.log('Developed by @luiscape + @takavarasha')
 console.log('Version: v.' + version)
 console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')

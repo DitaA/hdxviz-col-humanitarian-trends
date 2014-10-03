@@ -64,7 +64,7 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 			names: {
 				date: "Date",
 				total_idps: "Total Number of Internally Displaced Persons"
-			}			
+			}
 		},
 		axis: {
 			x: {
@@ -91,6 +91,9 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 					}
 				}
 			}
+		},
+		legend: {
+			show: false
 		},
 		size: {
 			height: 300

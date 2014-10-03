@@ -3,7 +3,7 @@
 // data stored in the idps data.
 // it only shows a choropleth map with the latest data.
 
-var mapboxTiles = L.tileLayer('https://{s}.tiles.mapbox.com/v3/reliefweb.im6jg6a0/{z}/{x}/{y}.png', {
+var mapboxTiles = L.tileLayer('https://{s}.tiles.mapbox.com/v3/luiscapelo.jlpda14n/{z}/{x}/{y}.png', {
     attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>',
     maxZoom: 7
 });
