@@ -63,8 +63,12 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 			},
 			names: {
 				date: "Date",
-				total_idps: "IDPs"
-			}
+				total_idps: "IDPs",
+				projection: "OCHA Projection"
+			},
+		    regions: {
+	         'projection': [{'start': '2013-12-01'}]
+		    }
 		},
 		axis: {
 			x: {
@@ -106,9 +110,6 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 	            title: d3.time.format('%B %Y')
 	            }
 	       },
-	    regions: [
-	        {axis: 'x', start: '2012-11-01', end: '2013-12-31', class: 'negotiations'}
-	    ],
 	    grid: {
 	      y: {
 	        lines: [
