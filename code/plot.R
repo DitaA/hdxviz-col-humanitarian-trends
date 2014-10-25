@@ -13,9 +13,5 @@ write.csv(totalPerDate, 'data/totalPerDate.csv', row.names = F)
 ## plotting
 # timeseries -- nice looking line!
 ggplot(totalPerDate) + theme_bw() +
-<<<<<<< HEAD
   geom_line(aes(date, total_idps), stat = 'identity', size = 1.3, color = '#404040') +
   geom_smooth(aes(date, total_idps), method = "lm")
-=======
-  geom_line(aes(date, total_idps), stat = 'identity', size = 1.3, color = '#404040')
->>>>>>> f7eeede415e796ffc84192520d5eacde7d88095e
