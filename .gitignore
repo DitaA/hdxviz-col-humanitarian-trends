@@ -1,6 +1,10 @@
 data/geo/*
 data/geo/**
 data/source/*
+<<<<<<< HEAD
 data/source/**
 data/140812_UARIV_RNI_CONSULTA_EDADES.csv
 .Rhitory
+=======
+data/source/**
+>>>>>>> f7eeede415e796ffc84192520d5eacde7d88095e
