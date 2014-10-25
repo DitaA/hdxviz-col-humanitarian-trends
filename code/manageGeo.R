@@ -45,9 +45,12 @@ addDatatoGeoJson <- function(df = NULL) {
     setTxtProgressBar(pb, i)
     
     # adding the idps figure to the geojson
-    idp_data <- geoData[grep(admin3$features[[i]]$properties$CODANE, as.character(df$pcode)),2]
-    idp_data = ifelse(length(idp_data) == 0, 0, as.numeric(idp_data))
-    admin3$features[[i]]$properties$IDPDATA <- idp_data
+    idp_data <- geoData[grep(admin3$features[[i]]$properties$CODANE, as.character(df$pcode)),4]
+    if (length(idp_data) == 0) {
+      admin3$features[[i]]$properties$IDPDATA <- NULL
+    }
+    else admin3$features[[i]]$properties$IDPDATA <- as.numeric(idp_data)
+    
   }
   
   # Returning data.frame
@@ -64,8 +67,3 @@ admin3 <- addDatatoGeoJson(geoData)
 sink("data/geo/idp_map_data.geojson")
 cat(toJSON(admin3))
 sink()
-
-
-# Loading the post-processed data
-postData <- fromJSON(file = 'data/geo/idp_map_data.geojson')
-postData$features[[1]]$properties$IDPDATA

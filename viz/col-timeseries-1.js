@@ -6,51 +6,6 @@
 var colorPalette = ['#B2B2B2', '#007CE0'];
 var timeSeriesChart = generateTimeseriesChart("#timeseries", "data/totalPerDate.csv");
 
-/*
-var timeseries = c3.generate({
-  bindto: '#timeseries',
-    data: {
-      x: 'date',
-      url: 'data/idp_total_data.csv',
-      type: 'line',
-      colors: {
-        total: colorPalette[1]
-      },
-      names: {
-        total: "Total Number of Internally Displaced Persons"
-      }
-    },
-    axis: {
-      x: {
-        label: 'Time',
-        type: 'timeseries',
-          tick: {
-            format: '%B, %Y'
-          }
-      },
-      y: {
-        label: 'Total Number of IDPs',
-        show: true
-      }
-    },
-    tooltip: {
-      format: {
-        value: d3.format(',')
-      }
-    },
-    point: {
-      show: true
-    },
-    size: {
-      height: 300,
-      width: 700
-    },
-    legend: {
-      show: false
-    }
-});
-*/
-
 function generateTimeseriesChart(bindTo, dataUrl) {
 	return c3.generate({
 		bindto: bindTo,
@@ -65,10 +20,7 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 				date: "Date",
 				total_idps: "IDPs",
 				projection: "OCHA Projection"
-			},
-		    regions: {
-	         'projection': [{'start': '2013-12-01'}]
-		    }
+			}
 		},
 		axis: {
 			x: {
@@ -113,8 +65,8 @@ function generateTimeseriesChart(bindTo, dataUrl) {
 	    grid: {
 	      y: {
 	        lines: [
-	          {value: 15400, text: 'Average from Nov. 2012 to Dec. 2013.', axis: 'y'},
-	          {value: 25643, text: 'All time average.', axis: 'y'}
+	          {value: 16907, text: 'Average from Jan. 2010 to Dec. 2013.', axis: 'y'},
+	          {value: 25643, text: 'Average from 1996 to present.', axis: 'y'}
 	          ]
 	         }
         }

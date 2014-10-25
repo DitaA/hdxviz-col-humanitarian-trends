@@ -9,4 +9,4 @@ var map = L.mapbox.map('map', 'luiscapelo.jlpda14n', {
 map.gridControl.options.follow = true;
 
 // for setting the center point
-map.setView([5, -65], 6);
+map.setView([3, -66], 6);
