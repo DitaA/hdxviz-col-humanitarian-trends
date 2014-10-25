@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>IDPs from Colombia</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- loading font -->
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700' rel='stylesheet' type='text/css'>
+
+  <!-- Loading jquery -->
+  <script src='js/jquery.js'></script>
+
+  <!-- Load Leaflet -->
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <!-- <script src="js/leaflet.js"></script> -->
+
+  <!-- Loading Mapbox, used for the popup -->
+  <script src='js/mapbox.js'></script>
+  <!-- <link href='css/mapbox.css' rel='stylesheet' /> -->
+
+  <!-- Loading c3 + d3 -->
+  <script src='js/d3.min.js'></script>
+  <script src='js/c3.js'></script>
+  <link href='css/c3.css' rel='stylesheet' />
+
+  <!-- Loading style sheets that match our current site -->
+  <link rel='stylesheet' id='bean-css'  href='css/framework.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='main-style-css'  href='css/style.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='mobile-css'  href='css/mobile.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='font-awesome-four-css'  href='css/font-awesome.min.css' type='text/css' media='all' />
+
+
+  <style>
+    body {
+      font-family: 'Source Sans Pro';
+      margin-top:20px;
+      width: 100%;
+    }
+
+    /* footnote style */
+    .footnote {
+      font-size: 12px;
+      line-height: 13px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    .footnote strong {
+      color: #808080;
+    }
+
+    /* Map specific styles */
+    #map {
+      position:absolute;
+      z-index: -1;
+      height: 100%;
+      width:100%;
+    }
+
+    /* Overlay for the box */
+    .overlay {
+      z-index: 1;
+      position: relative;
+      display: ;
+      float: right;
+      padding-right: 5%;
+    }
+    .floaty {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 25px;
+      padding-bottom: 40px;
+      /* box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3); */
+    }
+    /* try to fix the distance between the cursor and */
+    /* the map. they are on top of each other now. */
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background-color: #404040;
+      color: #fff;
+      box-shadow: none;
+      max-width: 200px;
+      /* margin-bottom: 20px; */
+    }
+    /* very ugly hack to get rid of the attribution */
+    /* this is NOT a solution, it should be fixed */
+    /* as soon as possible */
+    #map > div.leaflet-control-container > div.leaflet-bottom.leaflet-right {
+      font-size: 0px;
+    }
+
+    /* timeseries specific style */
+    #timeseries {
+      padding-top: 30px;
+    }
+    #timeseries .c3-line {
+      stroke-width: 2px;
+    }
+    #timeseries .c3-line-Average {
+      stroke-width: 3px;
+    }
+    #timeseries .c3-legend-item {
+      font-size: 11px;
+    }
+
+    /* style for regions */
+    .c3-region.negotiations {
+      fill: #0078A8;
+    }
+
+    /* Map legend styles */
+    #map > div.overlay > div > div.seven.columns.floaty > div.map-legend > div:nth-child(2) {
+      padding: 0 0 0 0;
+      width: 10%;
+    }
+    .map-legend p {
+      font: 12px/10px "Source Sans Pro", Helvetica, Arial, sans-serif
+    }
+    .map-legend .legend-box {
+       width: 10px;
+       height: 10px;
+    }
+
+  </style>
+</head>
+
+<body id='map'>
+<div class="overlay">
+  <div class="row" style="padding-bottom: 40px;">
+    <div class='five columns'></div>
+    <div class='seven columns floaty'>
+      <h1 style="padding-bottom: 20px;"><strong>Number of Internally Displaced Persons in Colombia</strong></h1>
+      <p>
+      Amidst peace talks between Colombia's government and the FARC (Revolutionary Armed Forces of Colombia), internal displacement continues to be a matter of concern. According to official figures, over the past three years the number of IDPs has remained steady in <strong>around 15,600 per month</strong>.</p>
+
+      <center>
+        <a href="#" class="btn btn-default btn-lg" style="color:#ffffff;">Download the time line data</a>
+        <a href="#" class="btn btn-default btn-lg" style="color:#ffffff;">Download the map data</a>
+      </center>
+
+      <!-- Loading time series -->
+      <div id="timeseries"></div>
+      <div>
+        <p class="footnote"><strong>Footnote:</strong>
+        The official registry of IDPs in Colombia is carried out by the Administrative Unit for Assistance and Reparation for Victims (UARIV according to its acronym in Spanish). IDPs figures are subject to a lag due to the time the UARIV takes to evaluate the cases and decide upon the inclusion of new IDPs in their database. Therefore, official figures for the last six months are likely to underreport the actual number of IDPs.
+        </p>
+      </div>
+
+      <!-- Map Legend -->
+      <div class="map-legend">
+         <div class="two columns">
+          <div class="four columns legend-box" style="background:#fed976;"></div>
+          <p class="eight columns">1 - 50</p>
+         </div>
+         <div class="two columns">
+           <div class="four columns legend-box" style="background:#feb24c;"></div>
+           <p class="eight columns">50 - 100</p>
+         </div>
+         <div class="two columns">
+           <div class="four columns legend-box" style="background:#fd8d3c;"></div>
+           <p class="eight columns">100 - 200</p>
+         </div>
+         <div class="two columns">
+           <div class="four columns legend-box" style="background:#fc4e2a;"></div>
+           <p class="eight column">200 - 350</p>
+         </div>
+         <div class="two columns">
+           <div class="four columns legend-box" style="background:#e31a1c;"></div>
+           <p class='eight columns'>350 - 800</p>
+         </div>
+         <div class="two columns">
+           <div class="four columns legend-box" style="background:#b10026;"></div>
+           <p class='eight columns'>800 or more</p>
+         </div>
+      </div>
+
+     </div>
+  </div>
+</div>
+
+
+<!-- Loading the specific visualizations for this page -->
+<script src="viz/map.js"></script>
+<script src="viz/col-timeseries-1.js"></script>
+
+<script>
+version = '0.3'
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+console.log('hdxviz-col-humanitarian-trends.')
+console.log('Developed by @luiscape + @takavarasha')
+console.log('Version: v.' + version)
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+</script>
+
+</body>
+</html>
