@@ -2,5 +2,7 @@ data/geo/*
 data/geo/**
 data/source/*
 data/source/**
-data/140812_UARIV_RNI_CONSULTA_EDADES.csv
+data/source/140812_UARIV_RNI_CONSULTA_EDADES.csv
 .Rhistory
+data/boundaries/*
+data/boundaries/**

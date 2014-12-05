@@ -1,0 +1,34 @@
+---
+title: "Walk Through"
+author: "Luis Capelo (@luiscape)"
+date: "December 1, 2014"
+output: html_document
+---
+
+```{r}
+library(summarytools)
+library(ggplot2)
+```
+
+The original dataset was provided by the Government of Colombia, specifically the Victim's Unit ([UARIV](http://www.unidadvictimas.gov.co) in Spanish). The summary of the dataset can be found online. That dataset we will be working with contains much more detail. 
+
+After loading that dataset into R.
+
+```{r}
+data <- read.table('data/source/140812_UARIV_RNI_CONSULTA_EDADES.txt', 
+                   header = T, 
+                   sep = ';')
+
+nrow(data)
+
+```
+
+The dataset, containing **4537455** observation, is divided in **11** variables.
+
+
+We also load the Colombia boundary data into R: 
+
+```{r}
+admin3 <- read.csv('data/boundaries/admin_3.csv')
+admin2 <- read.csv('data/boundaries/admin_2.csv')
+```
